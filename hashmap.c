@@ -82,26 +82,32 @@ HashMap * createMap(long capacity) {
     return map;
 }
 
-void eraseMap(HashMap * map,  char * key) {    
+void eraseMap(HashMap * map, char * key) {
     size_t pos = hash(key, map->capacity);
+
     while (map->buckets[pos] != NULL) {
         if (is_equal(map->buckets[pos]->key, key)) {
-            free(map->buckets[pos]);
-            map->buckets[pos] = NULL;
+            map->buckets[pos]->key = NULL;
             map->size--;
             return;
         }
-        pos = (pos + 1) % map->capacity;
+        pos = (pos + 1) % map->capacity; 
     }
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
-
-
+    size_t pos = hash(key, map->capacity);
+    while (map->buckets[pos] != NULL) {
+        if (is_equal(map->buckets[pos]->key, key)) {
+            return map->buckets[pos];
+        }
+        pos = (pos + 1) % map->capacity;
+    }
     return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
+
 
     return NULL;
 }
