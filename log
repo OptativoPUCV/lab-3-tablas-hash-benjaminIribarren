@@ -1,0 +1,17 @@
+Fri, Apr 18, 2025  3:27:06 PM: 
+ hashmap.c | 43 +++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 37 insertions(+), 6 deletions(-)
+Compilation failed
+In file included from test.c:4:
+hashmap.c:11:8: error: redefinition of 'struct Pair'
+   11 | struct Pair {
+      |        ^~~~
+In file included from hashmap.c:6:
+hashmap.h:15:16: note: originally defined here
+   15 | typedef struct Pair {
+      |                ^~~~
+test.c:8:8: error: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Werror=attributes]
+    8 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+cc1.exe: all warnings being treated as errors
+eeef3b7
