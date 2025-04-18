@@ -118,13 +118,12 @@ Pair * firstMap(HashMap * map) {
     return NULL;
 }
 
-
 Pair * nextMap(HashMap * map) {
-    if (map->current == -1) return NULL;
-    map->current = (map->current + 1) % map->capacity;
-    while (map->buckets[map->current] == NULL) {
-        map->current = (map->current + 1) % map->capacity;
-        if (map->current == 0) return NULL; 
+    for (size_t i = map->current + 1; i < map->capacity; i++) {
+        if (map->buckets[i] != NULL) {
+            map->current = i;
+            return map->buckets[i]; 
+        }
     }
     return NULL;
 }
