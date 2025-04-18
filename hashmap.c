@@ -42,7 +42,7 @@ void insertMap(HashMap * map , char * key, void * value) {
     long pos = hash(key, map->capacity);
     
     while (map->buckets[pos] != NULL && map->buckets[pos]->key != NULL) {
-        if (is_equal(map->buckets[pos]->key, key)) return; // clave ya existe
+        if (is_equal(map->buckets[pos]->key, key)) return; 
         pos = (pos + 1) % map->capacity;
     }
 
@@ -109,12 +109,22 @@ Pair * searchMap(HashMap * map,  char * key) {
 }
 
 Pair * firstMap(HashMap * map) {
-
-
+    for (size_t i = 0; i < map->capacity; i++) {
+        if (map->buckets[i] != NULL) {
+            map->current = i;
+            return map->buckets[i];
+        }
+    }
+    map->current = NULL;
     return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
-
+    if (map->current == -1) return NULL;
+    map->current = (map->current + 1) % map->capacity;
+    while (map->buckets[map->current] == NULL) {
+        map->current = (map->current + 1) % map->capacity;
+        if (map->current == 0) return NULL; //no hay mas elementos
+    }
     return NULL;
 }
