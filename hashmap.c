@@ -55,6 +55,7 @@ void insertMap(HashMap * map , char * key, void * value) {
 void enlarge(HashMap * map) {
     enlarge_called = 1; //no borrar (testing purposes)
     size_t new_capacity = map->capacity * 2;
+    Pair ** new_buckets = NULL;
     Pair ** new_buckets = (Pair **)malloc(new_capacity * sizeof(Pair *));
     for (size_t i = 0; i < new_capacity; i++) {
         new_buckets[i] = NULL;
