@@ -108,25 +108,31 @@ Pair * searchMap(HashMap * map,  char * key) {
     return NULL;
 }
 
+
 Pair * firstMap(HashMap * map) {
-    map->current = -1; 
+    if (map == NULL || map->buckets == NULL) return NULL;
+
     for (size_t i = 0; i < map->capacity; i++) {
         if (map->buckets[i] != NULL) {
             map->current = i;
-            return map->buckets[i]; 
+            return map->buckets[i];  
         }
     }
+    
+    map->current = -1; 
     return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
-    if (map->current == -1) return NULL; 
+    if (map == NULL || map->buckets == NULL || map->current == -1) return NULL;
+
     for (size_t i = map->current + 1; i < map->capacity; i++) {
         if (map->buckets[i] != NULL) {
             map->current = i;
             return map->buckets[i];
         }
     }
+
     map->current = -1; 
     return NULL;
 }
