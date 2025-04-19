@@ -115,3 +115,17 @@ Fri, Apr 18, 2025  6:55:45 PM:
  tests:  12|2
 total_score: 50/70
 81c9213
+Sat, Apr 19, 2025  8:26:51 AM: 
+ hashmap.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+Compilation failed
+In file included from test.c:4:
+hashmap.c: In function 'nextMap':
+hashmap.c:123:29: error: returning 'long int' from a function with return type 'Pair *' makes pointer from integer without a cast [-Wint-conversion]
+  123 |     else return map->current+1;
+      |                 ~~~~~~~~~~~~^~
+test.c: At top level:
+test.c:8:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    8 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+5437d42
