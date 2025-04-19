@@ -75,7 +75,10 @@ void enlarge(HashMap * map) {
 
 HashMap * createMap(long capacity) {
     HashMap * map = (HashMap *)malloc(sizeof(HashMap));
-    map->buckets = (Pair **)malloc(sizeof(Pair *));
+    map->buckets = (Pair **)malloc(capacity * sizeof(Pair *));
+    for (size_t i = 0; i < capacity; i++) {
+        map->buckets[i] = NULL;
+    }
     map->capacity = capacity;
     map->size = 0;
     map->current = -1;
@@ -110,18 +113,16 @@ Pair * searchMap(HashMap * map,  char * key) {
 
 
 Pair * firstMap(HashMap * map) {
-    if (map == NULL || map->buckets == NULL){
-        return NULL;
-        map->current = -1; }
+    if (map == NULL || map->buckets == NULL) return NULL;
+       
     for (size_t i = 0; i < map->capacity; i++) {
         if (map->buckets[i] != NULL) {
             map->current = i;
             return map->buckets[i];  
         }
     }
-    
-    //map->current = -1; 
-    //return NULL;
+    map->current = -1; 
+    return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
@@ -133,7 +134,6 @@ Pair * nextMap(HashMap * map) {
             return map->buckets[i];
         }
     }
-
     map->current = -1; 
     return NULL;
 }
